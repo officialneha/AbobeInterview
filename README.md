@@ -90,4 +90,4 @@ scratch. If you do decide to copy code from third party resources, please  consi
 when submitting your code:</p>
 <p class="has-line-data" data-line-start="93" data-line-end="95">• Declare which parts of the sample is your own code<br>
 • Reference all copied code and where you took it from: do not remove  copyrights or comments. Any violation of copyrights or obfuscation tactics  will reflect negatively on your assessment.</p>
-<h2 class="code-line" data-line-start=96 data-line-end=97 ><a id="6_Please_provide_us_with_a_link_from_where_we_can_download_your_solutions_For__technical_reasons_we_cannot_accept_email_attachments_96"></a>6. Please provide us with a link from where we can download your solutions. For  technical reasons we cannot accept email attachments.</h2>
+
