@@ -1,6 +1,6 @@
-#<p class="has-line-data" data-line-start="0" data-line-end="1">Parse YAML Config</p>
+<p class="has-line-data" data-line-start="0" data-line-end="1">Parse YAML Config</p>
 <ol>
-##<li class="has-line-data" data-line-start="1" data-line-end="3">Problem:<br>
+<li class="has-line-data" data-line-start="1" data-line-end="3">Problem:<br>
 A user has a YAML file that defines their service’s configuration for each  environment and region. The Ops team’s tooling uses the YAML file to provision  and update the service, but the tooling only accepts a single environment/region  combination at a time. Write a script using your preferred language to reduce a  user’s YAML file to a single environment/region combination according to input  parameters.</li>
 <li class="has-line-data" data-line-start="3" data-line-end="12">Expectations:<br>
 • Script reads YAML file from disk<br>
