@@ -1,0 +1,41 @@
+---
+metadata:
+   service: some-service
+   team: Some Team
+   cost_center: 1564577
+   
+common:
+   repo:
+      url: git@git.corp.adobe.com:some-org/some-repo.git
+      version: main
+   helm:
+      chart_name: some-chart
+      release_name: sc
+      helm_version: "3"
+   notifications:
+      deployments: "#some-channel-deployments"
+      releases: "#some-channel-releases"
+dev:
+   va6:
+      helm:
+         values: /some/path/in/some-repo/dev/va6.yaml
+   va7:
+      helm:
+         values: /some/path/in/some-repo/dev/va7.yaml
+integration:
+   va7:
+      notifications:
+         deployments: "#some-channel-integration-deployments"
+      helm:
+         values: /some/path/in/some-repo/dev/va7.yaml
+production:
+   va7:
+      repo:
+         version: v1.34.2
+      helm:
+         values: /some/path/in/some-repo/production/va7.yaml
+   va6:
+      helm:
+         values: /some/path/in/some-repo/production/va6.yaml
+      repo:
+         version: v1.34.2
