@@ -5,11 +5,10 @@ ASSUMPTIONS
  
  - S3 using boto3 in Python has no ways of Exponential Backoff or to share upload status.
  Thus it is done by multi-threading.
- 
- ---
+  ---
  Reference links are mentioned towards the end.
 """
-#!/usr/bin/python3
+#!/usr/bin/python
 import sys,yaml,json
 from collections import OrderedDict
 import boto3,time
@@ -26,16 +25,16 @@ if n==3:
 	set_region=sys.argv[2]
 	f=open(sys.argv[3],'r')
 elif n==2: #assuming that if there are 2 inputs then it will be region and file only. 
-	set_region=sys.argv[2] #Can be modified with if case to check if input is region or env
-	f=open(sys.argv[3],'r')
+	set_region=sys.argv[1] #Can be modified with if case to check if input is region or env
+	f=open(sys.argv[2],'r')
 else:
-	f=open(sys.argv[3],'r')
+	f=open(sys.argv[1],'r')
 		
 
 ymld=yaml.safe_load(f.read()) #loading yaml file to dict
 
 
-set_env=set_env or "dev" #assumption to set "dev" as default env.
+set_env=set_env or "common" #assumption to set "dev" as default env.
 set_region=set_region or "va6" #assumption to set "va6" as default region.
 out=OrderedDict() #using OrderDict, as sorted order is not maintained in dict by default.
 out={"environment":set_env,"region":set_region,"configuration":OrderedDict()}
@@ -51,8 +50,9 @@ default=ymld["common"]["helm"]["helm_version"]
 out["configuration"]["helm"]["helm_version"]=ymld.get(set_env,{}).get(set_region,{}).get("helm_version",default)
 default=ymld["common"]["helm"]["release_name"]
 out["configuration"]["helm"]["release_name"]=ymld.get(set_env,{}).get(set_region,{}).get("release_name",default)
-out["configuration"]["helm"]["values"]=ymld[set_env][set_region]["helm"]["values"]
-
+out["configuration"]["helm"]["values"]=ymld.get(set_env,{}).get(set_region,{}).get("helm",{}).get("values",None)
+if out["configuration"]["helm"]["values"] is None:
+    del out["configuration"]["helm"]["values"]
 
 out["configuration"]["notifications"]=OrderedDict()
 default=ymld["common"]["notifications"]["deployments"]
